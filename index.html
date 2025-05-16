@@ -1,53 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MANNAT STUDIO Before-After Slider + Export</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Before-After Slider</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin: 40px; }
+    #slider-container {
+      position: relative;
+      max-width: 600px;
+      margin: auto;
+      aspect-ratio: 16 / 9;
+      border: 2px solid #333;
+      overflow: hidden;
+    }
+    #after-image, #before-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #before-wrapper {
+      overflow: hidden;
+      height: 100%;
+      width: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #slider {
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <img src="logo.png" alt="MANNAT STUDIO Logo" id="logo" />
-  <h1>Before-After Slider & Export</h1>
-</header>
 
-<section id="upload-section">
-  <label>Upload BEFORE image:
-    <input type="file" id="before-upload" accept="image/*" />
-  </label>
-  <label>Upload AFTER image:
-    <input type="file" id="after-upload" accept="image/*" />
-  </label>
-  <label>Aspect Ratio:
-    <select id="aspect-ratio">
-      <option value="1">1:1 (Square)</option>
-      <option value="1.33">4:3</option>
-      <option value="1.5">3:2</option>
-      <option value="1.77" selected>16:9</option>
-    </select>
-  </label>
-</section>
+<h2>Before-After Image Slider</h2>
 
-<section id="slider-section">
-  <div id="slider-container">
-    <img id="after-image" src="" alt="After" />
-    <div id="before-wrapper">
-      <img id="before-image" src="" alt="Before" />
-    </div>
-    <input type="range" min="0" max="100" value="50" id="slider" />
-    <div id="slider-handle"></div>
+<input type="file" id="before-upload" accept="image/*" />
+<input type="file" id="after-upload" accept="image/*" />
+
+<div id="slider-container">
+  <img id="after-image" />
+  <div id="before-wrapper">
+    <img id="before-image" />
   </div>
-</section>
+</div>
 
-<section id="export-section">
-  <button id="export-gif">Export as GIF</button>
-  <button id="export-mp4">Export as MP4</button>
-  <p id="status"></p>
-</section>
+<input type="range" id="slider" min="0" max="100" value="50" />
 
-<script src="https://cdn.jsdelivr.net/npm/ffmpeg.wasm@0.11.5/dist/ffmpeg.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gif.js.optimized/dist/gif.js"></script>
-<script src="script.js"></script>
+<script>
+  const beforeInput = document.getElementById('before-upload');
+  const afterInput = document.getElementById('after-upload');
+  const beforeImg = document.getElementById('before-image');
+  const afterImg = document.getElementById('after-image');
+  const beforeWrapper = document.getElementById('before-wrapper');
+  const slider = document.getElementById('slider');
+
+  beforeInput.addEventListener('change', () => {
+    const file = beforeInput.files[0];
+    if (file) {
+      beforeImg.src = URL.createObjectURL(file);
+    }
+  });
+
+  afterInput.addEventListener('change', () => {
+    const file = afterInput.files[0];
+    if (file) {
+      afterImg.src = URL.createObjectURL(file);
+    }
+  });
+
+  slider.addEventListener('input', () => {
+    beforeWrapper.style.width = slider.value + "%";
+  });
+</script>
+
 </body>
 </html>
