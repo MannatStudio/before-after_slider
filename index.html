@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MANNAT STUDIO Before-After Slider</title>
+<title>MANNAT STUDIO Before-After Slider + Export</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -31,19 +31,23 @@
 
 <section id="slider-section">
   <div id="slider-container">
-    <img id="before-image" src="" alt="Before" />
-    <div id="slider-overlay"></div>
     <img id="after-image" src="" alt="After" />
+    <div id="before-wrapper">
+      <img id="before-image" src="" alt="Before" />
+    </div>
     <input type="range" min="0" max="100" value="50" id="slider" />
+    <div id="slider-handle"></div>
   </div>
 </section>
 
 <section id="export-section">
   <button id="export-gif">Export as GIF</button>
   <button id="export-mp4">Export as MP4</button>
+  <p id="status"></p>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/ffmpeg.wasm@0.11.5/dist/ffmpeg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gif.js.optimized/dist/gif.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
