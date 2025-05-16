@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MANNAT STUDIO Before-After Slider</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <img src="logo.png" alt="MANNAT STUDIO Logo" id="logo" />
+  <h1>Before-After Slider & Export</h1>
+</header>
+
+<section id="upload-section">
+  <label>Upload BEFORE image:
+    <input type="file" id="before-upload" accept="image/*" />
+  </label>
+  <label>Upload AFTER image:
+    <input type="file" id="after-upload" accept="image/*" />
+  </label>
+  <label>Aspect Ratio:
+    <select id="aspect-ratio">
+      <option value="1">1:1 (Square)</option>
+      <option value="1.33">4:3</option>
+      <option value="1.5">3:2</option>
+      <option value="1.77" selected>16:9</option>
+    </select>
+  </label>
+</section>
+
+<section id="slider-section">
+  <div id="slider-container">
+    <img id="before-image" src="" alt="Before" />
+    <div id="slider-overlay"></div>
+    <img id="after-image" src="" alt="After" />
+    <input type="range" min="0" max="100" value="50" id="slider" />
+  </div>
+</section>
+
+<section id="export-section">
+  <button id="export-gif">Export as GIF</button>
+  <button id="export-mp4">Export as MP4</button>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/ffmpeg.wasm@0.11.5/dist/ffmpeg.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
